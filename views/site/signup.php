@@ -11,29 +11,34 @@ $this->title = 'Sign up';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1 class="form-header"><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to signup:</p>
+    <p class="form-text">Please fill out the following fields to signup:</p>
 
     <?php $form = ActiveForm::begin([
         'id' => 'signup-form',
         'layout' => 'horizontal',
         'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 col-form-label'],
+            'template' => "{label}\n<div class=\"col-lg-12\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
+            'labelOptions' => ['class' => 'col col-form-label'],
         ],
     ]); ?>
 
     <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+
+    <?= $form->field($model, 'email')->textInput(['placeholder' => 'email.example@gmail.com']) ?>
+
+    <?= $form->field($model, 'userFullName')->textInput(['placeholder' => 'Napr. Janko Mrkvička']) ?>
 
     <?= $form->field($model, 'password')->passwordInput() ?>
 
     <?= $form->field($model, 'password_repeat')->passwordInput() ?>
 
     <div class="form-group">
-        <div class="offset-lg-1 col-lg-11">
-            <?= Html::submitButton('Sign up', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+        <div class="col-lg-11 pt-2">
+            <?= Html::submitButton('Sign up', ['class' => 'btn btn-outline-dark', 'name' => 'login-button']) ?>
         </div>
     </div>
 
     <?php ActiveForm::end(); ?>
+</div>

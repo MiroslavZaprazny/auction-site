@@ -12,6 +12,17 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         return 'user';
     }
 
+    public function rules()
+    {
+        return [
+
+            //[['userFullName', 'userPhoneNumber', 'email', 'username'], 'required'],
+            [['email', 'username'], 'unique'],
+            [['email'], 'email']
+
+        ];
+    }
+
 
     /**
      * {@inheritdoc}
@@ -74,5 +85,16 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function validatePassword($password)
     {
         return Yii::$app->security->validatePassword($password, $this->password);
+    }
+
+
+
+    public function attributeLabels()
+    {
+        return [
+            'userFullName' => 'Cele meno',
+            'userPhoneNumber' => 'Telefonne Cislo'
+
+        ];
     }
 }

@@ -33,15 +33,18 @@ AppAsset::register($this);
             'brandLabel' => 'Aukcna Stranka',
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
-                'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top py-3',
+                'class' => 'navbar navbar-expand-md navbar-light fixed-top py-3',
             ],
         ]);
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav ms-auto'],
             'items' => [
                 ['label' => 'Aukcie', 'url' => ['/site/index']],
-                ['label' => 'Predaj Auto', 'url' => ['/site/about']],
-                ['label' => 'Kontakt', 'url' => ['/site/contact']],
+
+                Yii::$app->user->isGuest ? (['label' => 'Predaj Auto', 'url' => ['/site/login']]
+                ) : (['label' => 'Predaj Auto', 'url' => ['/auctions/create']]
+
+                ),
                 Yii::$app->user->isGuest ? (['label' => 'Login', 'url' => ['/site/login']]
                 ) : ('<li>'
                     . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
@@ -71,7 +74,7 @@ AppAsset::register($this);
         </div>
     </main>
 
-    <section class="p-5 " id='kontakt'>
+    <!-- <section class="p-5 " id='kontakt'>
         <div class="container">
             <div class="row">
                 <div class="col-md">
@@ -101,7 +104,7 @@ AppAsset::register($this);
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <?php $this->endBody() ?>
 </body>
