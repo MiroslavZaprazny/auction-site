@@ -17,10 +17,6 @@ use yii\db\ActiveRecord;
  */
 class Auctions extends ActiveRecord
 {
-
-    
-    public $file;
-
     /**
      * {@inheritdoc}
      */
@@ -32,30 +28,18 @@ class Auctions extends ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
-        return [
-            [['auctionText', 'auctionPrice', 'auctionTitle'], 'required'],
-            [['auctionText', 'created_by'], 'string'],
-            [['created_at'], 'integer'],
-            //[['auctionImg'], 'file', 'extensions' => 'png,jpg,jpeg', 'maxFiles' => 10, 'skipOnEmpty' => false],
-            [['auctionTitle', 'auctionImg'], 'string', 'max' => 50]
-        ];
-    }
+    // public function rules()
+    // {
+    //     return [
+    //         [['auctionText', 'auctionPrice', 'auctionTitle'], 'required'],
+    //         [['auctionText', 'created_by'], 'string'],
+    //         [['created_at'], 'integer'],
+    //         //[['auctionImg'], 'file', 'extensions' => 'png,jpg,jpeg', 'maxFiles' => 10, 'skipOnEmpty' => false],
+    //         [['auctionTitle', 'auctionImg'], 'string', 'max' => 50]
+    //     ];
+    // }
 
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
-        return [
-            'auctionId' => 'Auction ID',
-            'auctionText' => 'Auction Text',
-            'auctionTitle' => 'Auction Title',
-            'created_at' => 'Created At',
-            'created_by' => 'Created By',
-            'auctionPrice' => 'Auction Price',
-            'file' => 'Fotky Auta'
-        ];
-    }
 }

@@ -1,6 +1,5 @@
 function clickMe(){
   var text = document.getElementById("popup");
-  console.log(text.style.display);
 
   if (text.style.display === "none") {
     text.style.display = "block";
@@ -12,7 +11,6 @@ function clickMe(){
 
 function clickMe2(){
   var text = document.getElementById("popup2");
-  console.log(text.style.display);
 
   if (text.style.display === "none") {
     text.style.display = "block";

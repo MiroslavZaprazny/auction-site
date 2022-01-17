@@ -1,14 +1,17 @@
-@font-face {
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
+
+/* @font-face {
   font-family: "'IBM Plex Mono', monospace";
   font-family: "Raleway", sans-serif;
-  src: url("../fonts/IBMPlexMono-Light.ttf") format("truetype");
+  src: url("../fonts/IBMPlexMono-Light.ttf") format("truetype"); 
   font-weight: normal;
   font-weight: normal;
-}
+} */
 
 body {
-  font-family: "IBM Plex Mono', monospace";
-  font-family: "Raleway", sans-serif;
+  /* font-family: "IBM Plex Mono', monospace";
+  font-family: "Raleway", sans-serif; */
+  font-family: "Montserrat";
 }
 
 main > .container {
@@ -176,4 +179,9 @@ input:-webkit-autofill:focus {
 
 .help-block {
   color: red;
+}
+
+button.btn.btn-link.logout:focus {
+  outline: none;
+  box-shadow: none;
 }

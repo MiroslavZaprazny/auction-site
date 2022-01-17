@@ -6,12 +6,8 @@ use yii\db\ActiveRecord;
 
 class Cars extends ActiveRecord
 {
-    public $carMake;
-    public $carModel;
-    public $carTrasmission;
-    public $carFeatures;
-    public $carMilage;
 
+    public $file;
 
     /**
      * {@inheritdoc}
@@ -25,24 +21,10 @@ class Cars extends ActiveRecord
     {
         return [
 
-            [['carMake', 'carModel', 'carTransmission', /*'carFeatures',*/ 'carMilage'], 'required'],
-            [['carMake', 'carModel', 'carTransmission',], 'string']
+            [['carMake', 'carModel',/*'carFeatures',*/ 'carMilage', 'carModelYear'], 'required'],
+            [['carMake', 'carModel', 'carImage'], 'string'],
+            [['file'], 'file']
         ];
-    }
-
-    public function create()
-    {
-
-        $model = new Cars();
-        $model->carMake = $this->carMake;
-        $model->carModel = $this->carModel;
-        $model->carTrasmission = $this->carTrasmission;
-        /*$model->carFeatures = $this->carFeatures;*/
-        $model->carMilage = $this->carMilage;
-
-        if ($model->save()) {
-            return true;
-        }
     }
 
     public function attributeLabels()
@@ -52,7 +34,8 @@ class Cars extends ActiveRecord
             'carModel' => 'Model Auta',
             'carTransmission' => 'Prevodovka Auta',
             'carFeatures' => 'Pozoruhodné možnosti/funkcie',
-            'carMilage' => 'Najazdenné kilometre'
+            'carMilage' => 'Najazdenné kilometre',
+            'carModelYear' => 'Rok Výroby'
 
         ];
     }

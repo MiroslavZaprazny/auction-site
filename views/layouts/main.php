@@ -30,7 +30,7 @@ AppAsset::register($this);
     <header>
         <?php
         NavBar::begin([
-            'brandLabel' => 'Aukcna Stranka',
+            'brandLabel' => 'Aukčná stránka ',
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar navbar-expand-md navbar-light fixed-top py-3',
@@ -42,7 +42,7 @@ AppAsset::register($this);
                 ['label' => 'Aukcie', 'url' => ['/site/index']],
 
                 Yii::$app->user->isGuest ? (['label' => 'Predaj Auto', 'url' => ['/site/login']]
-                ) : (['label' => 'Predaj Auto', 'url' => ['/auctions/create']]
+                ) : (['label' => 'Predaj Auto', 'url' => ['/cars/create']]
 
                 ),
                 Yii::$app->user->isGuest ? (['label' => 'Login', 'url' => ['/site/login']]

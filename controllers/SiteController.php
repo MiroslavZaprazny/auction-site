@@ -10,7 +10,9 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Auctions;
+use app\models\Cars;
 use app\models\SignupForm;
+use Codeception\Step\Retry;
 
 class SiteController extends Controller
 {
@@ -63,10 +65,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $items = Auctions::find()->all();
+        $items = Cars::find()->all();
 
-        return $this->render('index', [
-            'auctionItems' => $items
+        return $this->render('/site/index', [
+            'carInfo' => $items
         ]);
     }
 

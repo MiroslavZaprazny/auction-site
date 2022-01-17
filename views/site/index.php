@@ -9,37 +9,30 @@ $this->title = 'My Yii Application';
 ?>
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form/data']]); ?>
 <div class="container main-section">
+    <h1>Aukcie</h1>
     <div class="row">
-        <?php foreach ($auctionItems as $item) { ?>
+        <?php foreach ($carInfo as $info) {
+        ?>
             <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center">
                 <div class="card m-5" style="width: 20rem; border-style:none">
-
-                    <?php //Html::img($item->auctionImg) 
-                    ?>
-
-
-
                     <div class="card-body">
-
                         <div class="col">
                             <span>
                                 <?=
-                                Html::a('Fotka', ['auctions/view', 'id' => $item->auctionId], ['class' => 'label label-primary']);
+                                Html::a('Fotka', ['cars/view', 'id' => $info->carId], ['class' => 'label label-primary']);
                                 ?>
                             </span>
                         </div>
-
                         <div class="col pt-5">
-                            <h5 class="card-title px-2"><?= $item->auctionTitle ?> </h5>
-                            <p class="card-text px-2"> <?= $item->auctionText ?> </p>
-                            <p class="card-text px-2"> <?= $item->auctionPrice . '€' ?> </p>
-
+                            <h5 class="card-title px-2"> <?= $info->carModelYear . ' ' . $info->carMake . ' ' . $info->carModel ?> </h5>
+                            <p class="card-text px-2"><?= $info->carMilage . ' km' ?> </p>
+                            <p class="card-text px-2"> </p>
                         </div>
-
                     </div>
                 </div>
             </div>
-        <?php } ?>
+        <?php }
+        ?>
         <?php ActiveForm::end(); ?>
         <!--    <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center">-->
         <!--        <div class="card m-5" style="width: 18rem;">-->
