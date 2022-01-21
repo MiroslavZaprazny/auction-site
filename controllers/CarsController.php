@@ -26,11 +26,9 @@ class CarsController extends Controller
 
                 $car->carImage = 'uploads/' . $imgName . ' ' . $car->file->extension;
             }
-
-
             $car->save();
 
-            return $this->render('anotherform', [
+            return $this->render('continue', [
                 'carInfo' => $car
             ]);
         }

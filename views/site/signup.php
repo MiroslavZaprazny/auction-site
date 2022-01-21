@@ -35,7 +35,7 @@ $this->title = 'Sign up';
     <?= $form->field($model, 'password_repeat')->passwordInput() ?>
 
     <div class="form-group">
-        <div class="col-lg-11 pt-2">
+        <div class="pt-2">
             <?= Html::submitButton('Sign up', ['class' => 'btn btn-outline-dark', 'name' => 'login-button']) ?>
         </div>
     </div>

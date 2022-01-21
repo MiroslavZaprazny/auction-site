@@ -8,10 +8,13 @@
   font-weight: normal;
 } */
 
-body {
+body,
+html {
   /* font-family: "IBM Plex Mono', monospace";
   font-family: "Raleway", sans-serif; */
   font-family: "Montserrat";
+  width: 100%;
+  height: 100%;
 }
 
 main > .container {
@@ -124,18 +127,26 @@ a.desc:after {
   color: black;
 }
 
-.form-text,
-.form-header {
-  text-align: center;
+h2 {
+  display: flex;
 }
-
-.form {
+p {
   display: flex;
 }
 
+.form-text,
+.form-header {
+  text-align: center;
+  justify-content: center;
+}
+
 /* .form-items {
-    font-weight: bold;
-  } */
+  font-weight: bold;
+}
+
+.control-label {
+  opacity: 0.8;
+} */
 
 .site-login {
   height: auto;
@@ -147,6 +158,8 @@ a.desc:after {
   border: none !important;
   border-radius: 0;
   border-bottom: 1px solid black !important;
+  opacity: 0.8;
+  margin-top: 10px;
 }
 
 .form-control:focus,
@@ -184,4 +197,9 @@ input:-webkit-autofill:focus {
 button.btn.btn-link.logout:focus {
   outline: none;
   box-shadow: none;
+}
+
+.form-items > .form-group {
+  width: 45%;
+  margin: auto;
 }
