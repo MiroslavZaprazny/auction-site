@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="form my-4">
-    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form/data']]); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]);  ?>
     <h2 class="form-header">
         Povedzte nám o svojom aute
     </h2>
@@ -37,7 +37,7 @@ use yii\widgets\ActiveForm;
             <?= $form->field($carInfo, 'carFeatures')->textInput(['placeholder' => 'Napr. Vyhrievaný volant, Parkovacie senzory']) ?>
         </div>
         <div class="form-items mb-1">
-            <?= $form->field($carInfo, 'carImage')->fileInput([]) ?>
+            <?= $form->field($carInfo, 'carImage')->fileInput(['multiple' => true]) ?>
         </div>
         <div class="form-items">
             <div class="form-group mt-3">

@@ -3,11 +3,12 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\web\UploadedFile;
+use app\models\Cars;
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
 ?>
-<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form/data']]); ?>
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 <div class="container main-section">
     <h1>Aukcie</h1>
     <div class="row">
@@ -18,9 +19,7 @@ $this->title = 'My Yii Application';
                     <div class="card-body">
                         <div class="col">
                             <span>
-                                <?=
-                                Html::a('Fotka', ['cars/view', 'id' => $info->carId], ['class' => 'label label-primary']);
-                                ?>
+                                <?= Html::a(Html::img('@web/' . $info->carImage, ['style' => 'width:300px']), ['cars/view', 'id' => $info->carId], ['class' => 'label label-primary']) ?>
                             </span>
                         </div>
                         <div class="col pt-5">

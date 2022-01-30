@@ -32,3 +32,5 @@ tests/_support/_generated
 #vagrant folder
 /.vagrant
 web/uploads/bmw-3-series-modelfinder-sport-line-330e.png
+*.png
+*.jpg
