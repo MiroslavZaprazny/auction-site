@@ -28,16 +28,13 @@ class Auctions extends ActiveRecord
     /**
      * {@inheritdoc}
      */
-    // public function rules()
-    // {
-    //     return [
-    //         [['auctionText', 'auctionPrice', 'auctionTitle'], 'required'],
-    //         [['auctionText', 'created_by'], 'string'],
-    //         [['created_at'], 'integer'],
-    //         //[['auctionImg'], 'file', 'extensions' => 'png,jpg,jpeg', 'maxFiles' => 10, 'skipOnEmpty' => false],
-    //         [['auctionTitle', 'auctionImg'], 'string', 'max' => 50]
-    //     ];
-    // }
+    public function rules()
+    {
+        return [
+            [['auctionPrice'], 'required'],
+            [['auctionPrice'], 'string']
+        ];
+    }
 
     /**
      * {@inheritdoc}

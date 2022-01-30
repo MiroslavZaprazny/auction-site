@@ -2,16 +2,18 @@
 
 namespace app\models;
 
+use Yii;
+
 use yii\db\ActiveRecord;
 
 class Cars extends ActiveRecord
 {
-
-    public $file;
-
     /**
      * {@inheritdoc}
      */
+
+    public $file;
+
     public static function tableName()
     {
         return 'cars';
@@ -21,9 +23,10 @@ class Cars extends ActiveRecord
     {
         return [
 
-            [['carMake', 'carModel',/*'carFeatures',*/ 'carMilage', 'carModelYear'], 'required'],
+            // [['carMake', 'carModel', 'carMilage', 'carModelYear'], 'required'],
             [['carMake', 'carModel', 'carImage'], 'string'],
-            [['file'], 'file']
+            [['carMilage', 'carModelYear'], 'integer'],
+            [['file'], 'file', 'extensions' => 'png, jpg']
         ];
     }
 

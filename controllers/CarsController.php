@@ -12,28 +12,31 @@ use Yii;
 
 class CarsController extends Controller
 {
-
     public function actionCreate()
     {
         $car = new Cars();
-        $imgName = $car->carMake;
-
         if ($car->load(Yii::$app->request->post()) && $car->validate()) {
-
             if ($car->file = UploadedFile::getInstance($car, 'carImage')) {
-
-                $car->file->saveAs('/web/uploads/' . $imgName . ' ' . $car->file->extension);
-
-                $car->carImage = 'uploads/' . $imgName . ' ' . $car->file->extension;
+                $imgName = $car->carMake;
+                $car->carImage = 'uploads/' . $imgName . '.' . $car->file->extension;
+                $car->save();
+                $car->file->saveAs('uploads/' . $imgName . '.' . $car->file->extension);
             }
-            $car->save();
-
-            return $this->render('continue', [
-                'carInfo' => $car
-            ]);
+            return $this->redirect(['continue',]);
         }
-
         return $this->render('create', [
+            'carInfo' => $car
+        ]);
+    }
+
+    public function actionContinue()
+    {
+        $car = new Cars();
+        if ($car->load(Yii::$app->request->post())) {
+            $car->save();
+            return $this->redirect('/site/index');
+        }
+        return $this->render('continue', [
             'carInfo' => $car
         ]);
     }
@@ -41,9 +44,16 @@ class CarsController extends Controller
     public function actionView(int $id)
     {
         $item = Cars::findOne(['carId' => $id]);
-
+        $auctions = new Auctions();
+        $userName = '';
+        if ($auctions->load(Yii::$app->request->post())) {
+            $userName = Yii::$app->user->identity->username;
+            $auctions->save();
+        }
         return $this->render('view', [
-            'carInfo' => $item
+            'carInfo' => $item,
+            'auctionInfo' => $auctions,
+            'userInfo' => $userName
         ]);
     }
 }
