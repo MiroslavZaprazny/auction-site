@@ -2,19 +2,8 @@
 
 namespace app\models;
 
-use yii\web\UploadedFile;
 use yii\db\ActiveRecord;
 
-
-/**
- * This is the model class for table "auctions".
- *
- * @property int $auctionId
- * @property string $auctionText
- * @property string|null $auctionTitle
- * @property int|null $created_at
- * @property string|null $created_by
- */
 class Auctions extends ActiveRecord
 {
     /**
@@ -31,12 +20,9 @@ class Auctions extends ActiveRecord
     public function rules()
     {
         return [
-            [['auctionPrice'], 'required'],
-            [['auctionPrice'], 'string']
+            [['created_at'], 'datetime'],
+            [['carId', 'username'], 'string'],
+            [['bid'], 'integer']
         ];
     }
-
-    /**
-     * {@inheritdoc}
-     */
 }

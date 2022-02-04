@@ -36,7 +36,7 @@ use yii\widgets\ActiveForm;
         <div class="form-items mb-4">
             <?= $form->field($carInfo, 'carFeatures')->textInput(['placeholder' => 'Napr. Vyhrievaný volant, Parkovacie senzory']) ?>
         </div>
-        <div class="form-items mb-1">
+        <div class="form-items mb-1 upload-btn-wrapper">
             <?= $form->field($carInfo, 'carImage')->fileInput(['multiple' => true]) ?>
         </div>
         <div class="form-items">

@@ -18,7 +18,9 @@ function clickMe2(){
   } else {
   
     text.style.display = "none";
-}}
+  }
+}
+
 
 
 

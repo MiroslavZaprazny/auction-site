@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 use yii\db\ActiveRecord;
 
 class Cars extends ActiveRecord
@@ -24,9 +22,9 @@ class Cars extends ActiveRecord
         return [
 
             // [['carMake', 'carModel', 'carMilage', 'carModelYear'], 'required'],
-            [['carMake', 'carModel', 'carImage'], 'string'],
-            [['carMilage', 'carModelYear'], 'integer'],
-            [['file'], 'file', 'extensions' => 'png, jpg']
+            [['carMake', 'carModel', 'carImage', 'drivetrain', 'carDamage'], 'string'],
+            [['carMilage', 'carModelYear', 'carEngineDisplacement', 'carCylinders', 'carHorsePower'], 'integer'],
+            [['file'], 'file', 'extensions' => 'png, jpg, jpeg']
         ];
     }
 
@@ -38,7 +36,10 @@ class Cars extends ActiveRecord
             'carTransmission' => 'Prevodovka Auta',
             'carFeatures' => 'Pozoruhodné možnosti/funkcie',
             'carMilage' => 'Najazdenné kilometre',
-            'carModelYear' => 'Rok Výroby'
+            'carModelYear' => 'Rok Výroby',
+            'carEngineDisplacement' => 'Objem motora(cc)',
+            'carHorsePower' => 'Výkon motora(kw)',
+            'carCylinders' => 'Počet valcov'
 
         ];
     }

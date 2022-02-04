@@ -8,11 +8,9 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
 use app\models\Auctions;
 use app\models\Cars;
 use app\models\SignupForm;
-use Codeception\Step\Retry;
 
 class SiteController extends Controller
 {
@@ -66,9 +64,11 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $items = Cars::find()->all();
+        $auction = Auctions::find()->all();
 
         return $this->render('/site/index', [
-            'carInfo' => $items
+            'carInfo' => $items,
+            'auction' => $auction,
         ]);
     }
 

@@ -19,10 +19,10 @@ $this->title = 'My Yii Application';
                     <div class="card-body">
                         <div class="col">
                             <span>
-                                <?= Html::a(Html::img('@web/' . $info->carImage, ['style' => 'width:300px']), ['cars/view', 'id' => $info->carId], ['class' => 'label label-primary']) ?>
+                                <?= Html::a(Html::img('@web/' . $info->carImage, ['class' => 'carImg']), ['cars/view', 'id' => $info->carId], ['class' => 'label label-primary']) ?>
                             </span>
                         </div>
-                        <div class="col pt-5">
+                        <div class="col pt-2">
                             <h5 class="card-title px-2"> <?= $info->carModelYear . ' ' . $info->carMake . ' ' . $info->carModel ?> </h5>
                             <p class="card-text px-2"><?= $info->carMilage . ' km' ?> </p>
                             <p class="card-text px-2"> </p>
