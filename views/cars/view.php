@@ -4,13 +4,24 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
 ?>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 <div class="container-fluid main-section">
     <h2 class="card-title"> <?= $carInfo->carModelYear . ' ' . $carInfo->carMake  . ' ' . $carInfo->carModel  ?>
     </h2>
-    <div>
-        <?= Html::img('@web/' . $carInfo->carImage, ['class' => 'viewCarImg']) ?>
+    <div class="row images">
+        <div class="col">
+            <?= Html::img('@web/' . $carInfo->carImage, ['class' => 'view-car car', 'id' => 'car']) ?>
+        </div>
+        <div class="col small-col">
+            <?= Html::img('@web/uploads/Mazda.jpeg', ['class' => 'side-car car']) ?>
+            <?= Html::img('@web/uploads/Mazda.jpeg', ['class' => 'side-car car']) ?>
+            <?= Html::img('@web/uploads/Mazda.jpeg', ['class' => 'side-car car']) ?>
+        </div>
     </div>
     <div class="row">
         <div class="col">
@@ -94,7 +105,14 @@ $this->title = 'My Yii Application';
                             <?= $carInfo->carHorsePower ?>
                         </td>
                         <td>
-                            <?= $carInfo->carTransmission ?>
+                            <?php
+                            if ($carInfo->transmission == 1) {
+                                echo "<td>Manuál</td>";
+                            } else {
+                                echo "<td>Automat</td>";
+                            }
+                            ?>
+
                         </td>
                     </tr>
                 </tbody>
@@ -103,16 +121,27 @@ $this->title = 'My Yii Application';
         <h2 class="mt-3">Prečo sa majitel rozhodol o predaji auta?</h2>
         <h2 class="mt-5">Poskodenie na aute</h2>
         <?php
-        if (!$carInfo->carDamage == 0) {
+        if (!$carInfo->damage == 0) {
 
             foreach ($carDmg as $dmg) {
-                echo "<li>$dmg</li>";
+                echo "<li class='mx-3'>$dmg</li>";
+            }
+        } else {
+            echo "<p>Auto nema ziadne poskodenie </p>";
+        }
+        ?>
+        <h2 class="mt-5">Úpravy na aute</h2>
+        <?php
+        if (!$carInfo->modifications == 0) {
+            foreach ($mods as $mod) {
+                echo "<li class='mx-3'>$mod</li>";
             }
         } else {
             echo "<p>Auto nema ziadne poskodenie </p>";
         }
         ?>
     </div>
+
     <?php
     if (!Yii::$app->user->isGuest) {
     ?>
