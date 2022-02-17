@@ -4,14 +4,14 @@ namespace app\models;
 
 use yii\db\ActiveRecord;
 
-class Auctions extends ActiveRecord
+class CarImages extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'auctions';
+        return 'carImages';
     }
 
     /**
@@ -21,8 +21,8 @@ class Auctions extends ActiveRecord
     {
         return [
             [['createdAt'], 'datetime'],
-            [['carId', 'username'], 'string'],
-            [['bid'], 'integer']
+            [['carId', 'status'], 'integer'],
+            [['imgName'], 'string']
         ];
     }
 }

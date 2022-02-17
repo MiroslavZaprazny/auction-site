@@ -73,39 +73,6 @@ AppAsset::register($this);
             <?= $content ?>
         </div>
     </main>
-
-    <!-- <section class="p-5 " id='kontakt'>
-        <div class="container">
-            <div class="row">
-                <div class="col-md">
-                    <h2 class="text-center mb-4">
-                        Kontakt
-                    </h2>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <span class="fw-bold">
-                                Adresa:
-                            </span>
-                            Neviem 123
-                        </li>
-                        <li class="list-group-item">
-                            <span class="fw-bold">
-                                Email:
-                            </span>
-                            email@email.com
-                        </li>
-                        <li class="list-group-item">
-                            <span class="fw-bold">
-                                Tel. cislo:
-                            </span>
-                            +421951351
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
     <?php $this->endBody() ?>
 </body>
 

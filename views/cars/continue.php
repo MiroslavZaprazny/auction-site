@@ -8,6 +8,8 @@ use yii\widgets\ActiveForm;
 /* @var $user app\models\User */
 /* @var $cars app\models\Cars */
 /* @var $form yii\widgets\ActiveForm */
+
+$this->title = 'Pokračovanie';
 ?>
 <div class="container-fluid my-4">
 
@@ -44,9 +46,22 @@ use yii\widgets\ActiveForm;
                 </select>
             </div>
         </div>
+        <div class="form-items">
+            <div class="form-group mb-3">
+                <select class="form-select" name="Cars[transmission]" id="transmission-type">
+                    <option value="0">
+                        Vyberte typ prevodovky
+                    </option>
+                    <?php
+                    foreach ($trans as $tran) {
+                        echo "<option value = '{$tran->id}'> {$tran->type} </option>";
+                    } ?>
+                </select>
+            </div>
+        </div>
         <div class="form-items col-sm-3 col-lg-6">
-            <?= $form->field($carInfo, 'carDamage')->textarea(['placeholder' => 'Popíšte mechanické poškodenie auta', 'id' => 'popup', 'style' => 'display: none; resize:none;', 'rows' => '4']) ?>
-            <div class="form-group row">
+            <?= $form->field($carInfo, 'damage')->textarea(['placeholder' => 'Popíšte mechanické poškodenie auta', 'id' => 'popup', 'style' => 'display: none; resize:none;', 'rows' => '4']) ?>
+            <div class="form-group row pt-2">
                 <div class="col">
                     <input type="checkbox" class="btn-check" id="flaws_yes" autocomplete="off">
                     <label class="btn btn-outline-primary" for="flaws_yes" onclick="clickMe()">Ano</label><br>
@@ -57,9 +72,9 @@ use yii\widgets\ActiveForm;
                 </div>
             </div>
         </div>
-        <!-- <div class="form-items col-sm-3 col-lg-6">
-            <?= $form->field($carInfo, 'carDamage')->textarea(['placeholder' => 'Popíšte mechanické poškodenie auta', 'id' => 'popup2', 'style' => 'display: none; resize:none;', 'rows' => '4']) ?>
-            <div class="form-group row">
+        <div class="form-items col-sm-3 col-lg-6">
+            <?= $form->field($carInfo, 'modifications')->textarea(['placeholder' => 'Popíšte úpravy robené na aute', 'id' => 'popup2', 'style' => 'display: none; resize:none;', 'rows' => '4']) ?>
+            <div class="form-group row pt-2">
                 <div class="col">
                     <input type="checkbox" class="btn-check" id="modifications_yes"" autocomplete=" off">
                     <label class="btn btn-outline-primary" for="modifications_yes" onclick="clickMe2()">Ano</label><br>
@@ -69,7 +84,7 @@ use yii\widgets\ActiveForm;
                     <label class="btn btn-outline-primary" for="modifications_no">Nie</label><br>
                 </div>
             </div>
-        </div> -->
+        </div>
         <div class="form-items">
             <div class="form-group mt-3">
                 <?= Html::submitButton('Odoslať', ['class' => 'btn btn-success']) ?>

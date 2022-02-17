@@ -65,6 +65,7 @@ class SiteController extends Controller
     {
         $items = Cars::find()->all();
         $auction = Auctions::find()->all();
+        
 
         return $this->render('/site/index', [
             'carInfo' => $items,

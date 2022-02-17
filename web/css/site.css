@@ -108,6 +108,14 @@ a.desc:after {
   padding-right: 10px;
 }
 
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(0, 0, 0, 0.931);
+}
+
+.nav li > form > button.logout {
+  color: rgba(0, 0, 0, 0.931);
+}
+
 .main-section {
   padding-top: 90px;
 }
@@ -197,6 +205,15 @@ button.btn.btn-link.logout:focus {
   margin: auto;
 }
 
+.form-group > textarea {
+  border: 1px solid !important;
+  border-radius: 10px;
+}
+
+.form-group > textarea:active {
+  padding-bottom: 10px;
+}
+
 .carImg {
   object-fit: cover;
   width: 350px;
@@ -281,4 +298,10 @@ button.btn.btn-link.logout:focus {
 
 .img-btn-prev:hover {
   opacity: 0.9;
+}
+
+#currentImg {
+  object-fit: cover;
+  width: 70%;
+  height: 70%;
 }

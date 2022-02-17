@@ -1,5 +1,4 @@
 const images = document.querySelectorAll('.car');
-console.log(images);
 let getLatestOpenedImg;
 const windowWidth = window.innerWidth;
 let container = document.body;
@@ -12,16 +11,13 @@ if(images){
     images.forEach(function(image, index){
         image.onclick = function(){
             let getImageUrl =image.getAttribute("src");
-            console.log(getImageUrl);
-
+            
             imgNameWithExtension = getImageUrl.split("/uploads/");
-            console.log(imgNameWithExtension);
             imgNameWithoutExtension = imgNameWithExtension[1].replace(/\.[^/.]+$/, "");
-            console.log(imgNameWithoutExtension);
             extension = imgNameWithExtension[1].split('.').pop();
-            console.log(extension);
 
-            getLatestOpenedImg = index;
+            getLatestOpenedImg = index ;
+
             let newImgWindow = document.createElement("div");
             container.appendChild(newImgWindow);
 
@@ -35,7 +31,7 @@ if(images){
 
             newImg.onload = function(){
                 let imgWidth= this.width;
-                let distanceImageToEdgde = ((windowWidth - imgWidth)/2) -80;
+                let distanceImageToEdgde = ((windowWidth - imgWidth)/2) -30;
 
                 nextBtn =document.createElement("a");
                 let nextBtnText =document.createTextNode("Next");
@@ -59,7 +55,6 @@ if(images){
         }
    });
 }
-
 function closeImg(){
     document.querySelector(".img-window").remove();
     document.querySelector(".img-btn-next").remove();
@@ -76,18 +71,20 @@ function changeImage(changeDirection){
     let calcNewImage;
     if(changeDirection == 1){
         calcNewImage = getLatestOpenedImg +1;
-        if(calcNewImage > images.length){
-            calcNewImage = 1 ;
+        if(calcNewImage > images.length - 1){
+            calcNewImage = 0 ;
         }
     } 
     else if(changeDirection == 0 ) {
         calcNewImage = getLatestOpenedImg -1 ;
-        if(calcNewImage < 1){
-            calcNewImage = images.length ;
+        if(calcNewImage < 0){
+            calcNewImage = images.length - 1 ;
         }
     }
 
-    newImage.setAttribute("src","../uploads/"+ imgNameWithoutExtension + calcNewImage + '.'+extension);
+    let newImgName = imgNameWithoutExtension.substring(0,imgNameWithoutExtension.length -1 );
+
+    newImage.setAttribute("src","../uploads/"+ newImgName + calcNewImage + '.' + extension);
     newImage.setAttribute("id","currentImg");
     getLatestOpenedImg =calcNewImage;
 }

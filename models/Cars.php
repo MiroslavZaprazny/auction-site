@@ -6,11 +6,12 @@ use yii\db\ActiveRecord;
 
 class Cars extends ActiveRecord
 {
+
     /**
-     * {@inheritdoc}
+     * @var UploadedFile[]
      */
 
-    public $file;
+    public $imageFiles;
 
     public static function tableName()
     {
@@ -22,9 +23,14 @@ class Cars extends ActiveRecord
         return [
 
             // [['carMake', 'carModel', 'carMilage', 'carModelYear'], 'required'],
-            [['carMake', 'carModel', 'carImage', 'drivetrain', 'carDamage'], 'string'],
+            [['carMake', 'carModel', 'drivetrain', 'damage', 'modifications', 'transmission', 'carFeatures'], 'string'],
             [['carMilage', 'carModelYear', 'carEngineDisplacement', 'carCylinders', 'carHorsePower'], 'integer'],
-            [['file'], 'file', 'extensions' => 'png, jpg, jpeg']
+            // [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg,jpeg', 'maxFiles' => 10],
+            [[
+                'carMake', 'carModel', 'drivetrain', 'damage', 'modifications', 'transmission', 'carMilage',
+                'carModelYear', 'carEngineDisplacement', 'carCylinders', 'carHorsePower'
+            ], 'safe']
+
         ];
     }
 
@@ -33,14 +39,20 @@ class Cars extends ActiveRecord
         return [
             'carMake' => 'Znacka Auta',
             'carModel' => 'Model Auta',
-            'carTransmission' => 'Prevodovka Auta',
             'carFeatures' => 'Pozoruhodné možnosti/funkcie',
             'carMilage' => 'Najazdenné kilometre',
             'carModelYear' => 'Rok Výroby',
             'carEngineDisplacement' => 'Objem motora(cc)',
             'carHorsePower' => 'Výkon motora(kw)',
-            'carCylinders' => 'Počet valcov'
+            'carCylinders' => 'Počet valcov',
+            'modifications' => 'Bolo vaše auto upravované? ',
+            'damage' => 'Je vaše auto poškodené'
 
         ];
+    }
+
+    public function getImages()
+    {
+        return $this->hasMany(CarImages::class, ['carId' => 'carId']);
     }
 }

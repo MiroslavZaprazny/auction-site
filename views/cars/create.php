@@ -8,6 +8,9 @@ use yii\widgets\ActiveForm;
 /* @var $user app\models\User */
 /* @var $cars app\models\Cars */
 /* @var $form yii\widgets\ActiveForm */
+
+$this->title = 'Vytvorenie aukcie';
+
 ?>
 
 <div class="form my-4">
@@ -37,7 +40,7 @@ use yii\widgets\ActiveForm;
             <?= $form->field($carInfo, 'carFeatures')->textInput(['placeholder' => 'Napr. Vyhrievaný volant, Parkovacie senzory']) ?>
         </div>
         <div class="form-items mb-1 upload-btn-wrapper">
-            <?= $form->field($carInfo, 'carImage')->fileInput(['multiple' => true]) ?>
+            <?= $form->field($img, 'imageFiles[]')->fileInput(['multiple' => true]) ?>
         </div>
         <div class="form-items">
             <div class="form-group mt-3">

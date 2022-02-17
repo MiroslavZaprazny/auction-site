@@ -13,14 +13,22 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
 <div class="container-fluid main-section">
     <h2 class="card-title"> <?= $carInfo->carModelYear . ' ' . $carInfo->carMake  . ' ' . $carInfo->carModel  ?>
     </h2>
+    <?php
+    $imgName = 'empty.jpg';
+    if (!empty($carInfo->images)) {
+        $imgName = $carInfo->images[0]->imgName;
+    }
+    ?>
     <div class="row images">
         <div class="col">
-            <?= Html::img('@web/' . $carInfo->carImage, ['class' => 'view-car car', 'id' => 'car']) ?>
+            <?= Html::img('@web/uploads/' . $imgName, ['class' => 'view-car car', 'id' => 'car']) ?>
         </div>
-        <div class="col small-col">
-            <?= Html::img('@web/uploads/Mazda.jpeg', ['class' => 'side-car car']) ?>
-            <?= Html::img('@web/uploads/Mazda.jpeg', ['class' => 'side-car car']) ?>
-            <?= Html::img('@web/uploads/Mazda.jpeg', ['class' => 'side-car car']) ?>
+        <div class="col">
+            <?php
+            for ($i = 1; $i < count($carInfo->images); $i++) {
+                echo (Html::img('@web/uploads/' . $carInfo->images[$i]->imgName, ['class' => 'view-car side-car car mb-2']));
+            }
+            ?>
         </div>
     </div>
     <div class="row">
@@ -104,16 +112,13 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
                         <td>
                             <?= $carInfo->carHorsePower ?>
                         </td>
-                        <td>
-                            <?php
-                            if ($carInfo->transmission == 1) {
-                                echo "<td>Manuál</td>";
-                            } else {
-                                echo "<td>Automat</td>";
-                            }
-                            ?>
-
-                        </td>
+                        <?php
+                        if ($carInfo->transmission == 1) {
+                            echo "<td>Manuál</td>";
+                        } else {
+                            echo "<td>Automat</td>";
+                        }
+                        ?>
                     </tr>
                 </tbody>
             </table>
@@ -127,7 +132,7 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
                 echo "<li class='mx-3'>$dmg</li>";
             }
         } else {
-            echo "<p>Auto nema ziadne poskodenie </p>";
+            echo "<p class = 'mx-2'>Auto nema ziadne poskodenie </p>";
         }
         ?>
         <h2 class="mt-5">Úpravy na aute</h2>
@@ -137,53 +142,58 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
                 echo "<li class='mx-3'>$mod</li>";
             }
         } else {
-            echo "<p>Auto nema ziadne poskodenie </p>";
+            echo "<p class = 'mx-2'>Auto nema ziadne poskodenie </p>";
         }
         ?>
     </div>
-
-    <?php
-    if (!Yii::$app->user->isGuest) {
-    ?>
-        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-        <div class="row mt-5">
-            <div class="col">
-                <?= $form->field($auctionInfo, 'username')->hiddenInput(['value' => $username])->label(false) ?>
-                <?= $form->field($auctionInfo, 'carId')->hiddenInput(['value' => $carInfo->carId])->label(false) ?>
-                <?= $form->field($auctionInfo, 'bid')->textInput(['value' => '', 'placeholder' => 'Zadajte sumu v €']) ?>
-                <button type="submit" class="btn btn-success mt-3">
-                    <i class="mdi mdi-content-save m-r-5"></i><?= Yii::t('app', 'Uložiť') ?>
-                </button>
-            </div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-borderless mt-5">
+                <thead>
+                    <tr>
+                        <th>
+                            Meno
+                        </th>
+                        <th>
+                            Suma
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($auctions as $auction) {
+                    ?>
+                        <tr>
+                            <td>
+                                <?= $auction->username ?>
+                            </td>
+                            <td>
+                                <?= $auction->bid . '€' ?>
+                            </td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
-    <?php ActiveForm::end();
-    } ?>
-    <table class="table table-borderless mt-5">
-        <thead>
-            <tr>
-                <th>
-                    Meno
-                </th>
-                <th>
-                    Suma
-                </th>
-            </tr>
-        </thead>
-        <tbody>
+        <div class="col">
             <?php
-            foreach ($auctions as $auction) {
+            if (!Yii::$app->user->isGuest) {
             ?>
-                <tr>
-                    <td>
-                        <?= $auction->username ?>
-                    </td>
-                    <td>
-                        <?= $auction->bid . '€' ?>
-                    </td>
-                </tr>
-            <?php
-            }
-            ?>
-        </tbody>
-    </table>
+                <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+                <div class="row mt-5">
+                    <div class="col">
+                        <?= $form->field($auctionInfo, 'username')->hiddenInput(['value' => $username])->label(false) ?>
+                        <?= $form->field($auctionInfo, 'carId')->hiddenInput(['value' => $carInfo->carId])->label(false) ?>
+                        <?= $form->field($auctionInfo, 'bid')->textInput(['value' => '', 'placeholder' => 'Zadajte sumu v €']) ?>
+                        <button type="submit" class="btn btn-success mt-3">
+                            <i class="mdi mdi-content-save m-r-5"></i><?= Yii::t('app', 'Uložiť') ?>
+                        </button>
+                    </div>
+                </div>
+            <?php ActiveForm::end();
+            } ?>
+        </div>
+    </div>
 </div>

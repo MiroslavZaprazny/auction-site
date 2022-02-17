@@ -6,20 +6,24 @@ use yii\web\UploadedFile;
 use app\models\Cars;
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Domovská Stránka';
 ?>
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 <div class="container main-section">
     <h1>Aukcie</h1>
     <div class="row">
         <?php foreach ($carInfo as $info) {
+            $imgName = 'empty.jpg';
+            if (!empty($info->images)) {
+                $imgName = $info->images[0]->imgName;
+            }
         ?>
             <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center">
                 <div class="card m-5" style="width: 20rem; border-style:none">
                     <div class="card-body">
                         <div class="col">
                             <span>
-                                <?= Html::a(Html::img('@web/' . $info->carImage, ['class' => 'carImg']), ['cars/view', 'id' => $info->carId], ['class' => 'label label-primary']) ?>
+                                <?= Html::a(Html::img('@web/uploads/' . $imgName, ['class' => 'carImg']), ['cars/view', 'id' => $info->carId], ['class' => 'label label-primary']) ?>
                             </span>
                         </div>
                         <div class="col pt-2">
