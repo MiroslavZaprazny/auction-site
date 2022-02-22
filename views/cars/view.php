@@ -1,7 +1,9 @@
 <?php
 
+use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\widgets\AoAlerts;
 /* @var $this yii\web\View */
 
 $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
@@ -26,7 +28,11 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
         <div class="col">
             <?php
             for ($i = 1; $i < count($carInfo->images); $i++) {
-                echo (Html::img('@web/uploads/' . $carInfo->images[$i]->imgName, ['class' => 'view-car side-car car mb-2']));
+                if ($i >= 5) {
+                    echo (Html::img('@web/uploads/' . $carInfo->images[$i]->imgName, ['class' => 'view-car side-car car mb-2', 'hidden' => true]));
+                } else {
+                    echo (Html::img('@web/uploads/' . $carInfo->images[$i]->imgName, ['class' => 'view-car side-car car mb-2']));
+                }
             }
             ?>
         </div>
@@ -37,19 +43,16 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
                 <thead>
                     <tr class="row mx-0">
                         <th>
-                            Znacka
+                            Značka
                         </th>
                         <th>
                             Model
                         </th>
                         <th>
-                            Počet najazdenych km
+                            Počet najazdených km
                         </th>
                         <th>
-                            Karoseria
-                        </th>
-                        <th>
-                            Pohanacia sustava
+                            Pohánacia sústava
                         </th>
                     </tr>
                 </thead>
@@ -64,10 +67,6 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
                         <td>
                             <?= $carInfo->carMilage . ' ' . 'km' ?>
                         </td>
-                        <td>
-                            <?= $carInfo->carBodyStyle ?>
-                        </td>
-
                         <?php
                         if ($carInfo->drivetrain == 1) {
                             echo "<td>RWD</td>";
@@ -91,13 +90,13 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
                             Počet valcov
                         </th>
                         <th>
-                            Objem Motora
+                            Objem Motora(cc)
                         </th>
                         <th>
                             Výkon(kw)
                         </th>
                         <th>
-                            Prevodovka
+                            Typ prevodovky
                         </th>
                     </tr>
                 </thead>
@@ -110,12 +109,12 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
                             <?= $carInfo->carEngineDisplacement ?>
                         </td>
                         <td>
-                            <?= $carInfo->carHorsePower ?>
+                            <?= $carInfo->carHorsePower . 'KW' ?>
                         </td>
                         <?php
                         if ($carInfo->transmission == 1) {
                             echo "<td>Manuál</td>";
-                        } else {
+                        } elseif ($carInfo->transmission == 2) {
                             echo "<td>Automat</td>";
                         }
                         ?>
@@ -123,28 +122,39 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
                 </tbody>
             </table>
         </div>
-        <h2 class="mt-3">Prečo sa majitel rozhodol o predaji auta?</h2>
-        <h2 class="mt-5">Poskodenie na aute</h2>
-        <?php
-        if (!$carInfo->damage == 0) {
+        <div class="row mt-5">
+            <h2>Pozoruhodné možnosti/funkcie</h2>
+            <?php
+            foreach ($features as $feature) {
+                echo "<li class='mx-3'>$feature</li>";
+            }
+            ?>
+        </div>
+        <div class="row mt-5">
+            <h2>Poškodenie na aute</h2>
+            <?php
+            if (!$carInfo->damage == 0) {
 
-            foreach ($carDmg as $dmg) {
-                echo "<li class='mx-3'>$dmg</li>";
+                foreach ($carDmg as $dmg) {
+                    echo "<li class='mx-3'>$dmg</li>";
+                }
+            } else {
+                echo "<p class = 'mx-2'>Auto nemá žiadne poškodenie </p>";
             }
-        } else {
-            echo "<p class = 'mx-2'>Auto nema ziadne poskodenie </p>";
-        }
-        ?>
-        <h2 class="mt-5">Úpravy na aute</h2>
-        <?php
-        if (!$carInfo->modifications == 0) {
-            foreach ($mods as $mod) {
-                echo "<li class='mx-3'>$mod</li>";
+            ?>
+        </div>
+        <div class="row mt-5">
+            <h2>Úpravy na aute</h2>
+            <?php
+            if (!$carInfo->modifications == 0) {
+                foreach ($mods as $mod) {
+                    echo "<li class='mx-3'>$mod</li>";
+                }
+            } else {
+                echo "<p class = 'mx-2'>Auto nemá žiadne úpravy </p>";
             }
-        } else {
-            echo "<p class = 'mx-2'>Auto nema ziadne poskodenie </p>";
-        }
-        ?>
+            ?>
+        </div>
     </div>
     <div class="row">
         <div class="col">
@@ -178,6 +188,7 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
             </table>
         </div>
         <div class="col">
+            <?= Alert::widget() ?>
             <?php
             if (!Yii::$app->user->isGuest) {
             ?>

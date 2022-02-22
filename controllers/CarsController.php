@@ -25,14 +25,9 @@ class CarsController extends Controller
 
         if ($car->load(Yii::$app->request->post())) {
             $imgs->imageFiles = UploadedFile::getInstances($imgs, 'imageFiles');
-            // $car->carImage = 'uploads/' . $car->carMake . '.' . $car->imageFiles->extension;
             if ($car->save()) {
                 $imgs->upload($car->carId, $car->carMake);
-                return $this->redirect(Url::to(['/site/index']));
-            } else {
-                var_dump($car->getErrors(), 56789, true);
-                var_dump($imgs->getErrors(), 56789, true);
-                exit;
+                return $this->redirect(Url::to(['/cars/continue']));
             }
         }
         return $this->render('create', [
@@ -44,14 +39,11 @@ class CarsController extends Controller
     public function actionContinue()
     {
         $car = Cars::find()->orderBy(['carId' => SORT_DESC])->one();
-        $auction = new Auctions();
         $drivetrainTypes = Drivetrain::find()->all();
         $transmissions = Transmission::find()->all();
 
         if ($car->load(Yii::$app->request->post())) {
             if ($car->save()) {
-                $auction->createdAt =  (new \DateTime('now'))->format('Y-m-d H:i:s');
-                $auction->save();
                 return $this->redirect('/site/index');
             } else {
                 var_dump($car->getErrors(), 56789, true);
@@ -70,7 +62,7 @@ class CarsController extends Controller
         $item = Cars::findOne(['carId' => $id]);
         $auction = new Auctions();
 
-        //riadok najvysieho Bidu
+        //riadok najvysieho Bidu konkretneho auta
         $highestBidRow = Auctions::find()->where(['=', 'carId', $id])->orderBy(['bid' => SORT_DESC])->one();
 
         // logika aukcneho systemu
@@ -85,7 +77,7 @@ class CarsController extends Controller
                 $auction->load(Yii::$app->request->post());
                 $auction->save();
             } else {
-                echo "not enoough moneys";
+                Yii::$app->session->setFlash('error','');
             }
         }
         $carDmg = $item->damage;
@@ -94,8 +86,10 @@ class CarsController extends Controller
         $modifications = $item->modifications;
         $modifications = explode(',', $item->modifications);
 
-        $auctions = Auctions::find()->where(['=', 'carId', $id])->all();
+        $features = $item->carFeatures;
+        $features = explode(',', $item->carFeatures);
 
+        $auctions = Auctions::find()->where(['=', 'carId', $id])->all();
 
         return $this->render('view', [
             'carInfo' => $item,
@@ -103,7 +97,8 @@ class CarsController extends Controller
             'username' =>  Yii::$app->user->isGuest ? 'guest' : Yii::$app->user->identity->username,
             'auctions' => $auctions,
             'carDmg' => $carDmg,
-            'mods' => $modifications
+            'mods' => $modifications,
+            'features' => $features
         ]);
     }
 }

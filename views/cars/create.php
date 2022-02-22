@@ -25,19 +25,19 @@ $this->title = 'Vytvorenie aukcie';
     </p>
     <div class="row mt-4">
         <div class="form-items mb-3">
-            <?= $form->field($carInfo, 'carMake',)->textInput(['placeholder' => 'Napíšte značku auta... napr. Opel, Toyota']) ?>
+            <?= $form->field($carInfo, 'carMake',)->textInput(['placeholder' => 'Napíšte značku auta... napr. Opel, Toyota', 'required' => true]) ?>
         </div>
         <div class="form-items mb-3">
-            <?= $form->field($carInfo, 'carModel')->textInput(['placeholder' => 'Napíšte model auta... napr. Astra, Yaris']) ?>
+            <?= $form->field($carInfo, 'carModel')->textInput(['placeholder' => 'Napíšte model auta... napr. Astra, Yaris', 'required' => true]) ?>
         </div>
         <div class="form-items mb-3 ">
-            <?= $form->field($carInfo, 'carModelYear')->textInput(['placeholder' => 'Napr. 1999, 2015, 2019']) ?>
+            <?= $form->field($carInfo, 'carModelYear')->textInput(['placeholder' => 'Napr. 1999, 2015, 2019', 'required' => true]) ?>
         </div>
         <div class="form-items mb-3 ">
-            <?= $form->field($carInfo, 'carMilage')->textInput(['placeholder' => 'Napr. 25900, 195358']) ?>
+            <?= $form->field($carInfo, 'carMilage')->textInput(['placeholder' => 'Napr. 25900, 195358', 'required' => true]) ?>
         </div>
         <div class="form-items mb-4">
-            <?= $form->field($carInfo, 'carFeatures')->textInput(['placeholder' => 'Napr. Vyhrievaný volant, Parkovacie senzory']) ?>
+            <?= $form->field($carInfo, 'carFeatures')->textarea(['placeholder' => 'Napr. Vyhrievaný volant, Parkovacie senzory', 'required' => true, 'rows' => '3']) ?>
         </div>
         <div class="form-items mb-1 upload-btn-wrapper">
             <?= $form->field($img, 'imageFiles[]')->fileInput(['multiple' => true]) ?>

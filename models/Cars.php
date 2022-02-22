@@ -55,4 +55,21 @@ class Cars extends ActiveRecord
     {
         return $this->hasMany(CarImages::class, ['carId' => 'carId']);
     }
+
+    public function getAuctions()
+    {
+        return $this->hasMany(Auctions::class, ['carId' => 'carId']);
+    }
+
+    public function getMaxBid()
+    {
+        $auctions = $this->getAuctions()->all();
+        $maxBid=0;
+        foreach($auctions as $auction){
+            if($auction->bid > $maxBid){
+                $maxBid = $auction->bid;
+            }
+        }
+        return $maxBid;
+    }
 }

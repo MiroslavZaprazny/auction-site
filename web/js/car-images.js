@@ -31,7 +31,7 @@ if(images){
 
             newImg.onload = function(){
                 let imgWidth= this.width;
-                let distanceImageToEdgde = ((windowWidth - imgWidth)/2) -30;
+                let distanceImageToEdgde = ((windowWidth - imgWidth)/2) -80;
 
                 nextBtn =document.createElement("a");
                 let nextBtnText =document.createTextNode("Next");

@@ -25,4 +25,11 @@ class Auctions extends ActiveRecord
             [['bid'], 'integer']
         ];
     }
+
+    public function attributeLabels()
+    {
+        return [[
+            'bid' => 'Zadajte sumu'
+        ]];
+    }
 }

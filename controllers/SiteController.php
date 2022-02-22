@@ -64,12 +64,11 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $items = Cars::find()->all();
-        $auction = Auctions::find()->all();
-        
+        $auctions = Auctions::find()->all();
 
         return $this->render('/site/index', [
             'carInfo' => $items,
-            'auction' => $auction,
+            'auction' => $auctions,
         ]);
     }
 
