@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+$this->registerJsFile("@web/js/buttonClick.js");
 $this->title = 'Pokračovanie';
 ?>
 <div class="container-fluid my-4">

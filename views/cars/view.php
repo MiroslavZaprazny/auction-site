@@ -3,9 +3,8 @@
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\widgets\AoAlerts;
-/* @var $this yii\web\View */
 
+$this->registerJsFile("@web/js/car-images.js");
 $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
 ?>
 
@@ -31,7 +30,7 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
                 if ($i == 4) {
                     echo "<div class='click-for-more-container'>
                                 <div class='click-for-more'>
-                                    <p class='pt-5 px-4 click-for-more-text'>
+                                    <p class='pt-5 click-for-more-text'>
                                        <strong> Kliknite pre viac </strong>
                                     </p>
                                 </div>
@@ -212,10 +211,10 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
                     <div class="col">
                         <?= $form->field($auctionInfo, 'username')->hiddenInput(['value' => $username])->label(false) ?>
                         <?= $form->field($auctionInfo, 'carId')->hiddenInput(['value' => $carInfo->carId])->label(false) ?>
-                        <?= $form->field($auctionInfo, 'bid')->textInput(['value' => '', 'placeholder' => 'Zadajte sumu v €']) ?>
-                        <button type="submit" class="btn btn-success mt-3">
-                            <i class="mdi mdi-content-save m-r-5"></i><?= Yii::t('app', 'Uložiť') ?>
-                        </button>
+                        <?= $form->field($auctionInfo, 'bid')->textInput(['value' => '', 'placeholder' => 'Zadajte sumu v €', 'autocomplete' => 'off']) ?>
+                        <div class="form-group mt-3">
+                            <?= Html::submitButton('Odoslať ponuku', ['class' => 'btn btn-success']) ?>
+                        </div>
                     </div>
                 </div>
             <?php ActiveForm::end();

@@ -28,8 +28,8 @@ class Auctions extends ActiveRecord
 
     public function attributeLabels()
     {
-        return [[
-            'bid' => 'Zadajte sumu'
-        ]];
+        return [
+            'bid' => 'Zadajte ponuku'
+        ];
     }
 }

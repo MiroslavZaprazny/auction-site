@@ -6,7 +6,6 @@ use yii\web\Controller;
 use app\models\Auctions;
 use app\models\Drivetrain;
 use app\models\Cars;
-use app\models\CarImages;
 use app\models\Transmission;
 use app\models\UploadForm;
 use yii\web\UploadedFile;
@@ -38,6 +37,10 @@ class CarsController extends Controller
 
     public function actionContinue()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
         $car = Cars::find()->orderBy(['carId' => SORT_DESC])->one();
         $drivetrainTypes = Drivetrain::find()->all();
         $transmissions = Transmission::find()->all();
