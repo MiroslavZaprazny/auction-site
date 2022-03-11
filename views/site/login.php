@@ -21,7 +21,7 @@ $this->title = 'Login';
             'layout' => 'horizontal',
             'fieldConfig' => [
                 'template' => "{label}\n<div class=\"col-lg-12\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-                'labelOptions' => ['class' => 'col-lg-1 col-form-label'],
+                'labelOptions' => ['class' => 'col col-form-label'],
             ],
         ]); ?>
 
@@ -29,16 +29,18 @@ $this->title = 'Login';
 
         <?= $form->field($model, 'password')->passwordInput() ?>
 
+
         <?= $form->field($model, 'rememberMe')->checkbox([
             'template' => "<div class=\" custom-control custom-checkbox\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
         ]) ?>
 
         <div class="form-group">
-            <div class="col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-outline-dark', 'name' => 'login-button']) ?>
+            <div class="col">
+                <?= Html::submitButton('Prihláste sa', ['class' => 'btn btn-outline-dark', 'name' => 'login-button']) ?>
             </div>
         </div>
-
-        <?php ActiveForm::end(); ?>
     </div>
+
+    <?php ActiveForm::end(); ?>
+</div>
 </div>

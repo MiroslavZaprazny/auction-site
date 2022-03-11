@@ -28,7 +28,17 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
         <div class="col">
             <?php
             for ($i = 1; $i < count($carInfo->images); $i++) {
-                if ($i >= 5) {
+                if ($i == 4) {
+                    echo "<div class='click-for-more-container'>
+                                <div class='click-for-more'>
+                                    <p class='pt-5 px-4 click-for-more-text'>
+                                       <strong> Kliknite pre viac </strong>
+                                    </p>
+                                </div>
+                            </div>";
+                    echo (Html::img('@web/uploads/' . $carInfo->images[$i]->imgName, ['class' => 'view-car side-car car mb-2 click-for-more-img']));
+                    echo "</div>";
+                } elseif ($i >= 5) {
                     echo (Html::img('@web/uploads/' . $carInfo->images[$i]->imgName, ['class' => 'view-car side-car car mb-2', 'hidden' => true]));
                 } else {
                     echo (Html::img('@web/uploads/' . $carInfo->images[$i]->imgName, ['class' => 'view-car side-car car mb-2']));
@@ -123,17 +133,22 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
             </table>
         </div>
         <div class="row mt-5">
-            <h2>Pozoruhodné možnosti/funkcie</h2>
+            <h2> Pozoruhodné možnosti/funkcie</h2>
             <?php
-            foreach ($features as $feature) {
-                echo "<li class='mx-3'>$feature</li>";
+            if (!$carInfo->carFeatures == NULL) {
+                foreach ($features as $feature) {
+                    echo "<li class='mx-3'>$feature</li>";
+                }
+            } else {
+                echo "<p class = 'mx-2'>Auto nemá žiadne pozoruhodné možnosti/funkcie </p>";
             }
+
             ?>
         </div>
         <div class="row mt-5">
             <h2>Poškodenie na aute</h2>
             <?php
-            if (!$carInfo->damage == 0) {
+            if (!$carInfo->damage == NULL) {
 
                 foreach ($carDmg as $dmg) {
                     echo "<li class='mx-3'>$dmg</li>";
@@ -146,7 +161,7 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
         <div class="row mt-5">
             <h2>Úpravy na aute</h2>
             <?php
-            if (!$carInfo->modifications == 0) {
+            if (!$carInfo->modifications == NULL) {
                 foreach ($mods as $mod) {
                     echo "<li class='mx-3'>$mod</li>";
                 }

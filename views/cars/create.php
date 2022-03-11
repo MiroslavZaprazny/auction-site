@@ -25,26 +25,26 @@ $this->title = 'Vytvorenie aukcie';
     </p>
     <div class="row mt-4">
         <div class="form-items mb-3">
-            <?= $form->field($carInfo, 'carMake',)->textInput(['placeholder' => 'Napíšte značku auta... napr. Opel, Toyota', 'required' => true]) ?>
+            <?= $form->field($carInfo, 'carMake',)->textInput(['placeholder' => 'Napíšte značku auta... napr. Opel, Toyota', 'required' => true, 'autocomplete' => 'off']) ?>
         </div>
         <div class="form-items mb-3">
-            <?= $form->field($carInfo, 'carModel')->textInput(['placeholder' => 'Napíšte model auta... napr. Astra, Yaris', 'required' => true]) ?>
+            <?= $form->field($carInfo, 'carModel')->textInput(['placeholder' => 'Napíšte model auta... napr. Astra, Yaris', 'required' => true, ' autocomplete' => 'off']) ?>
         </div>
         <div class="form-items mb-3 ">
-            <?= $form->field($carInfo, 'carModelYear')->textInput(['placeholder' => 'Napr. 1999, 2015, 2019', 'required' => true]) ?>
+            <?= $form->field($carInfo, 'carModelYear')->textInput(['placeholder' => 'Napr. 1999, 2015, 2019', 'required' => true, ' autocomplete' => 'off']) ?>
         </div>
         <div class="form-items mb-3 ">
-            <?= $form->field($carInfo, 'carMilage')->textInput(['placeholder' => 'Napr. 25900, 195358', 'required' => true]) ?>
+            <?= $form->field($carInfo, 'carMilage')->textInput(['placeholder' => 'Napr. 25900, 195358', 'required' => true, ' autocomplete' => 'off']) ?>
         </div>
         <div class="form-items mb-4">
-            <?= $form->field($carInfo, 'carFeatures')->textarea(['placeholder' => 'Napr. Vyhrievaný volant, Parkovacie senzory', 'required' => true, 'rows' => '3']) ?>
+            <?= $form->field($carInfo, 'carFeatures')->textarea(['placeholder' => 'Napr. Vyhrievaný volant, Parkovacie senzory', 'required' => true, ' autocomplete' => 'off', 'rows' => '3']) ?>
         </div>
         <div class="form-items mb-1 upload-btn-wrapper">
-            <?= $form->field($img, 'imageFiles[]')->fileInput(['multiple' => true]) ?>
+            <?= $form->field($img, 'imageFiles[]')->fileInput(['multiple' => true, ' autocomplete' => 'off']) ?>
         </div>
         <div class="form-items">
             <div class="form-group mt-3">
-                <?= Html::submitButton('Pokarčovať', ['class' => 'btn btn-success']) ?>
+                <?= Html::submitButton('Pokarčovať ďalej', ['class' => 'btn btn-success']) ?>
             </div>
         </div>
         <?php ActiveForm::end(); ?>

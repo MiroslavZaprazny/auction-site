@@ -84,13 +84,4 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     {
         return Yii::$app->security->validatePassword($password, $this->password);
     }
-
-    public function attributeLabels()
-    {
-        return [
-            'userFullName' => 'Cele meno',
-            'userPhoneNumber' => 'Telefonne Cislo'
-
-        ];
-    }
 }

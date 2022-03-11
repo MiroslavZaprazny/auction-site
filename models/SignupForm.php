@@ -44,4 +44,15 @@ class SignupForm extends Model
 
         \Yii::error('User was not saved' . VarDumper::dumpAsString($user->errors));
     }
+
+
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Prihlasovacie meno',
+            'userFullName' => 'Meno a Priezvisko',
+            'password' => 'Heslo',
+            'password_repeat' => 'Zopakujte heslo'
+        ];
+    }
 }

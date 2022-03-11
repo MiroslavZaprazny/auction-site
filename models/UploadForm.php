@@ -36,10 +36,10 @@ class UploadForm extends Model
             return false;
         }
     }
-    // public function attributeLabels()
-    // {
-    //     return [[
-    //         'imageFiles' => 'Nahrajte fotografie'
-    //     ]];
-    // }
+    public function attributeLabels()
+    {
+        return [
+            'imageFiles' => 'Nahrajte fotky vášho auta',
+        ];
+    }
 }

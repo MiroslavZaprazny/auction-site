@@ -66,20 +66,21 @@ class CarsController extends Controller
         $highestBidRow = Auctions::find()->where(['=', 'carId', $id])->orderBy(['bid' => SORT_DESC])->one();
 
         // logika aukcneho systemu
-        if ($highestBidRow == NULL) {
-            $auction->load(Yii::$app->request->post());
-            $auction->save();
-        }
-        if (!$highestBidRow == NULL && Yii::$app->request->isPost) {
+        if (Yii::$app->request->isPost) {
             $data = Yii::$app->request->post();
             $bid = $data['Auctions']['bid'];
-            if ($highestBidRow->bid < (int)$bid) {
+
+            if ($highestBidRow == NULL && (int)$bid != 0) {
+                $auction->load(Yii::$app->request->post());
+                $auction->save();
+            } elseif ($highestBidRow != NULL && $highestBidRow->bid < (int)$bid) {
                 $auction->load(Yii::$app->request->post());
                 $auction->save();
             } else {
-                Yii::$app->session->setFlash('error','');
+                Yii::$app->session->setFlash('error', 'Nedostatok prostriedkov, skúste znova');
             }
         }
+
         $carDmg = $item->damage;
         $carDmg = explode(',', $item->damage);
 

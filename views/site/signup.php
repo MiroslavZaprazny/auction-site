@@ -36,7 +36,7 @@ $this->title = 'Sign up';
 
     <div class="form-group">
         <div class="pt-2">
-            <?= Html::submitButton('Sign up', ['class' => 'btn btn-outline-dark', 'name' => 'login-button']) ?>
+            <?= Html::submitButton('Zaregistrujte sa ', ['class' => 'btn btn-outline-dark', 'name' => 'login-button']) ?>
         </div>
     </div>
 

@@ -39,23 +39,23 @@ AppAsset::register($this);
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav ms-auto'],
             'items' => [
-                ['label' => 'Aukcie', 'url' => ['/site/index']],
+                ['label' => 'Prehľad Aukcií', 'url' => ['/site/index']],
 
                 Yii::$app->user->isGuest ? (['label' => 'Predaj Auto', 'url' => ['/site/login']]
                 ) : (['label' => 'Predaj Auto', 'url' => ['/cars/create']]
 
                 ),
-                Yii::$app->user->isGuest ? (['label' => 'Login', 'url' => ['/site/login']]
+                Yii::$app->user->isGuest ? (['label' => 'Prihlásenie', 'url' => ['/site/login']]
                 ) : ('<li>'
                     . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
                     . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
+                        'Odhlásenie (' . Yii::$app->user->identity->username . ')',
                         ['class' => 'btn btn-link logout']
                     )
                     . Html::endForm()
                     . '</li>'
                 ),
-                Yii::$app->user->isGuest ? (['label' => 'Signup', 'url' => ['/site/signup']]
+                Yii::$app->user->isGuest ? (['label' => 'Registrácia', 'url' => ['/site/signup']]
                 ) : ''
 
             ],
