@@ -69,7 +69,7 @@ $this->title = 'Pokračovanie';
                 </div>
             </div>
         </div>
-        <div class="form-items  pt-3">
+        <div class="form-items pt-3">
             <?= $form->field($carInfo, 'modifications')->textarea(['placeholder' => 'Popíšte úpravy robené na aute', 'id' => 'popup2', 'style' => 'display: none; resize:none;', 'rows' => '4']) ?>
             <div class=" form-group row pt-2">
                 <div class="col-lg-2">
@@ -93,12 +93,12 @@ $this->title = 'Pokračovanie';
 <?php ActiveForm::end(); ?>
 </div>
 <?php
-$csrf = "'" . Yii::$app->request->csrfParam . "':'" . Yii::$app->request->getCsrfToken() . "'";
-$js = <<<JS
-    $(function() {
-        $('.dattable').DataTable({
-            order: []
-        });
-    });
-JS;
-$this->registerJS($js);
+// $csrf = "'" . Yii::$app->request->csrfParam . "':'" . Yii::$app->request->getCsrfToken() . "'";
+// $js = <<<JS
+//     $(function() {
+//         $('.dattable').DataTable({
+//             order: []
+//         });
+//     });
+// JS;
+// $this->registerJS($js);

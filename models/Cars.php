@@ -37,10 +37,10 @@ class Cars extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'carMake' => 'Znacka Auta',
+            'carMake' => 'Značka Auta',
             'carModel' => 'Model Auta',
             'carFeatures' => 'Pozoruhodné možnosti/funkcie',
-            'carMilage' => 'Najazdenné kilometre',
+            'carMilage' => 'Najazdené kilometre',
             'carModelYear' => 'Rok Výroby',
             'carEngineDisplacement' => 'Objem motora(cc)',
             'carHorsePower' => 'Výkon motora(kw)',
@@ -64,9 +64,9 @@ class Cars extends ActiveRecord
     public function getMaxBid()
     {
         $auctions = $this->getAuctions()->all();
-        $maxBid=0;
-        foreach($auctions as $auction){
-            if($auction->bid > $maxBid){
+        $maxBid = 0;
+        foreach ($auctions as $auction) {
+            if ($auction->bid > $maxBid) {
                 $maxBid = $auction->bid;
             }
         }

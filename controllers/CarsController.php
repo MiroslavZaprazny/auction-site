@@ -48,9 +48,6 @@ class CarsController extends Controller
         if ($car->load(Yii::$app->request->post())) {
             if ($car->save()) {
                 return $this->redirect('/site/index');
-            } else {
-                var_dump($car->getErrors(), 56789, true);
-                exit;
             }
         }
         return $this->render('continue', [

@@ -64,11 +64,9 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $items = Cars::find()->all();
-        $auctions = Auctions::find()->all();
 
         return $this->render('/site/index', [
             'carInfo' => $items,
-            'auction' => $auctions,
         ]);
     }
 
@@ -88,7 +86,6 @@ class SiteController extends Controller
             return $this->goBack();
         }
 
-        $model->password = '';
         return $this->render('login', [
             'model' => $model,
         ]);

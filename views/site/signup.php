@@ -7,13 +7,13 @@
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 
-$this->title = 'Sign up';
+$this->title = 'Zaregistrujte sa ';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
     <h1 class="form-header"><?= Html::encode($this->title) ?></h1>
 
-    <p class="form-text">Please fill out the following fields to signup:</p>
+    <p class="form-text">Ak sa chcete zaregistrovať, vyplňte nasledujúce polia</p>
 
     <?php $form = ActiveForm::begin([
         'id' => 'signup-form',

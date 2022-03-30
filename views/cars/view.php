@@ -171,8 +171,8 @@ $this->title = $carInfo->carMake  . ' ' . $carInfo->carModel;
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <table class="table table-borderless mt-5">
+        <div class="col mt-5">
+            <table class="table table-borderless">
                 <thead>
                     <tr>
                         <th>

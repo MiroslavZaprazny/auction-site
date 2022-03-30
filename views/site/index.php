@@ -2,9 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\web\UploadedFile;
-use app\models\Cars;
-/* @var $this yii\web\View */
 
 $this->title = 'Prehľad Aukcií';
 ?>
@@ -24,12 +21,11 @@ $this->title = 'Prehľad Aukcií';
                         <div class="col">
                             <span>
                                 <?= Html::a(Html::img('@web/uploads/' . $imgName, ['class' => 'carImg']), ['cars/view', 'id' => $info->carId], ['class' => 'label label-primary']) ?>
-                                <p class="card-text px-2">Ponuka: <?= $info->getMaxBid() ?>€</p>
                             </span>
                         </div>
                         <div class="col pt-2">
                             <h5 class="card-title px-2"> <?= $info->carModelYear . ' ' . $info->carMake . ' ' . $info->carModel ?> </h5>
-                            <p class="card-text px-2"><?= $info->carMilage . ' km' ?> </p>
+                            <p class="card-text px-2"> <?= $info->carMilage . ' Km,' ?> Ponuka: <?= $info->getMaxBid() ?> €</p>
                         </div>
                     </div>
                 </div>

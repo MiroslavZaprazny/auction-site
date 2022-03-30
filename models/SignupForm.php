@@ -41,7 +41,6 @@ class SignupForm extends Model
             return true;
         }
 
-
         \Yii::error('User was not saved' . VarDumper::dumpAsString($user->errors));
     }
 
