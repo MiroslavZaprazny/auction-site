@@ -1,1 +1,1 @@
-Making an auction site for my school project
+An auction site for my school graduation project.
